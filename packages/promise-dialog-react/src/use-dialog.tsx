@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { TtModal } from 'tt-components';
 
 import { Dialog, DialogContext } from './Dialog';
-import { DialogFC, ModalProps } from './types';
+import { ComponentProps, DialogFC, ModalProps } from './types';
 
 export function useDialog() {
   // 调用useDialog所关联的dialog实例

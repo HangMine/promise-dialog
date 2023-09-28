@@ -108,7 +108,7 @@ function DialogInner(
   props: PropsWithChildren<{
     modalProps: TtModalProps;
     dialog: Dialog;
-  }>,
+  }>
 ) {
   const niceModalHandler = useModal();
   const { children, dialog, modalProps } = props;

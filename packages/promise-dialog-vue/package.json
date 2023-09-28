@@ -4,12 +4,21 @@
   "description": "",
   "main": "index",
   "scripts": {
-    "build": "promise-dialog-script build-vue",
+    "buildDev": "pnpm --filter promise-dialog-script build",
+    "build": "promise-dialog-script build",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "peerDependencies": {
+    "vue": ">=3"
+  },
   "devDependencies": {
-    "promise-dialog-script": "workspace:^1.0.0"
+    "promise-dialog-script": "workspace:^1.0.0",
+    "vue": "^3.0.0",
+    "vite": "^4.4.9",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "@vue/tsconfig": "^0.4.0"
   },
   "keywords": [],
   "author": "",
