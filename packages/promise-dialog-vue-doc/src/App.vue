@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import { CatalogProvider } from 'promise-dialog-vue'
+import { DialogProvider } from 'promise-dialog-vue'
 import { Modal } from 'ant-design-vue'
 
 </script>
@@ -19,9 +19,9 @@ import { Modal } from 'ant-design-vue'
     </div>
   </header>
 
-  <CatalogProvider :ModalComponent="Modal">
+  <DialogProvider :ModalComponent="Modal">
     <RouterView />
-  </CatalogProvider>
+  </DialogProvider>
 </template>
 
 <style scoped>

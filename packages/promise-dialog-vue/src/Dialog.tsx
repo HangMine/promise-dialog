@@ -1,38 +1,14 @@
-import {
-  inject,
-  onMounted,
-  provide,
-  defineComponent,
-  type DefineComponent,
-  isVNode,
-  type VNode,
-  type PropType
-} from 'vue'
-import type {
-  ComponentProps,
-  CreateByComponentParams,
-  CreateByVnodeParams,
-  CreateParams,
-  ModalProps,
-  UnknownComponent
-} from './types'
-import {
-  antdModalAdvancedController,
-  arcoDesignController,
-  type DialogController,
-  dialogController2ModalController,
-  type ModalControllerAdapter
-} from './modal-controller'
+import type { DefineComponent, VNode, PropType, Component } from 'vue'
+import type { ComponentProps, ModalProps, UnknownComponent } from './types'
+import type { DialogController, ModalControllerAdapter } from './modal-controller'
+import type { DialogDispatch, DialogStore } from './use-dialog-reducer'
 
-import {
-  dialogActions,
-  type DialogDispatch,
-  type DialogStore,
-  useDialogReducer
-} from './use-dialog-reducer'
+import { inject, onMounted, provide, defineComponent, isVNode } from 'vue'
+import { antdModalAdvancedController, dialogController2ModalController } from './modal-controller'
+import { dialogActions, useDialogReducer } from './use-dialog-reducer'
 
 export class Dialog {
-  // 在使用之前需要先安装
+  // 在使用之前需要先安装（在DialogProvider已经安装）
   static install(options: {
     ModalComponent: UnknownComponent
     modalControllerAdapter?: (typeof Dialog)['modalControllerAdapter']
@@ -64,9 +40,10 @@ export class Dialog {
 
   // 创建并弹出
   static open<R, T extends UnknownComponent<P> | VNode = any, P extends ComponentProps = any>(
-    ...args: CreateParams<T, P>
+    ComponentOrVnode: UnknownComponent<P> | VNode,
+    ComponentPropsOrModalProps?: T extends VNode ? ModalProps : P,
+    modalProps?: ModalProps
   ) {
-    const [ComponentOrVnode, ComponentPropsOrModalProps, modalProps] = args
     const dialogInstance = new Dialog()
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore 后续解决dialogInstance.create
@@ -91,14 +68,19 @@ export class Dialog {
   // 自带footer的取消回调
   onCancelCallback?: (dialog: Dialog) => void
   // 创建Dialog
-  create<P extends ComponentProps>(...args: CreateByComponentParams<P>): void
-  create(...args: CreateByVnodeParams): void
+  create<P extends ComponentProps>(
+    Component: UnknownComponent<P>,
+    componentProps?: ComponentProps,
+    modalProps?: ModalProps
+  ): void
+  create(vnode: VNode, modalProps?: ModalProps): void
   create<T extends UnknownComponent<P> | VNode, P extends ComponentProps>(
-    ...args: CreateParams<T, P>
+    ComponentOrVnode: UnknownComponent<P> | VNode,
+    ComponentPropsOrModalProps?: T extends VNode ? ModalProps : P,
+    modalProps?: ModalProps
   ): void {
-    const [ComponentOrVnode, ComponentPropsOrModalProps, modalProps] = args
     if (isVNode(ComponentOrVnode)) {
-      this.createByVnode(ComponentOrVnode, ComponentPropsOrModalProps as ModalProps)
+      this.createByVnode(ComponentOrVnode, ComponentPropsOrModalProps)
     } else {
       this.createByComponent(ComponentOrVnode, ComponentPropsOrModalProps, modalProps)
     }
@@ -111,8 +93,8 @@ export class Dialog {
     })
     this.createByComponent(Component, modalProps)
   }
-  createByComponent(
-    Component: UnknownComponent,
+  createByComponent<P extends ComponentProps>(
+    Component: UnknownComponent<P>,
     componentProps?: ComponentProps,
     modalProps: ModalProps = {}
   ) {
@@ -206,10 +188,10 @@ export const DialogContext = Symbol('DialogContext')
 
 // app上下文
 const DialogAppContext = Symbol('DialogAppContext')
-export const CatalogProvider = defineComponent({
+export const DialogProvider = defineComponent({
   props: {
     ModalComponent: {
-      type: Object as PropType<UnknownComponent>,
+      type: Object as PropType<UnknownComponent | Component>,
       required: true
     },
     modalControllerAdapter: {
@@ -217,7 +199,9 @@ export const CatalogProvider = defineComponent({
     }
   },
   setup(props, { slots }) {
-    const { ModalComponent, modalControllerAdapter } = props
+    // FIXME: 修复类型
+    const ModalComponent = props.ModalComponent as UnknownComponent
+    const { modalControllerAdapter } = props
     const [store, dispatch] = useDialogReducer()
     provide(DialogAppContext, store)
 
@@ -239,9 +223,3 @@ export const CatalogProvider = defineComponent({
     }
   }
 })
-
-// declare module '@vue/runtime-core' {
-//   interface ComponentCustomOptions {
-//     dialogify?: ModalProps | (() => ModalProps);
-//   }
-// }

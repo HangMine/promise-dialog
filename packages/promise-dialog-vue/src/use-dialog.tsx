@@ -1,4 +1,4 @@
-import { ComponentOptionsMixin, inject, VNode } from 'vue'
+import { inject } from 'vue'
 
 import { Dialog, DialogContext } from './Dialog'
 
