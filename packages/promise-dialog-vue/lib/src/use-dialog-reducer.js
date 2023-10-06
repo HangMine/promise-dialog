@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-require("../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js");
-const reactivity_esmBundler = require("../node_modules/.pnpm/@vue_reactivity@3.3.4/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js");
+const vue = require("vue");
 const dialogActions = {
   pushDialog: (dialog) => ({
     type: "push_dialog",
@@ -23,7 +22,7 @@ const dialogActions = {
     type: "clear_dialogs"
   })
 };
-const dialogStore = reactivity_esmBundler.shallowRef({
+const dialogStore = vue.shallowRef({
   dialogs: [],
   showDialogs: []
 });

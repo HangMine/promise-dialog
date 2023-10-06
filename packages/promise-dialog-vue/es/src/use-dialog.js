@@ -1,6 +1,5 @@
-import "../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js";
-import { Dialog, DialogContext } from "./Dialog.js";
-import { inject } from "../node_modules/.pnpm/@vue_runtime-core@3.3.4/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js";
+import { inject } from "vue";
+import { DialogContext, Dialog } from "./Dialog.js";
 function useDialog() {
   const currentDialog = inject(DialogContext);
   const dialog = Dialog.open;

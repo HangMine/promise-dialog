@@ -6,10 +6,9 @@ var __publicField = (obj, key, value) => {
   return value;
 };
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-require("../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js");
+const vue = require("vue");
 const modalController = require("./modal-controller.js");
 const useDialogReducer = require("./use-dialog-reducer.js");
-const runtimeCore_esmBundler = require("../node_modules/.pnpm/@vue_runtime-core@3.3.4/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
 const _Dialog = class _Dialog {
   constructor() {
     // 弹窗控制器
@@ -66,16 +65,16 @@ const _Dialog = class _Dialog {
   // 自带footer的取消回调
   // 创建Dialog
   create(ComponentOrVnode, ComponentPropsOrModalProps, modalProps) {
-    if (runtimeCore_esmBundler.isVNode(ComponentOrVnode)) {
+    if (vue.isVNode(ComponentOrVnode)) {
       this.createByVnode(ComponentOrVnode, ComponentPropsOrModalProps);
     } else {
       this.createByComponent(ComponentOrVnode, ComponentPropsOrModalProps, modalProps);
     }
   }
   createByVnode(vnode, modalProps = {}) {
-    const Component = /* @__PURE__ */ runtimeCore_esmBundler.defineComponent({
+    const Component = /* @__PURE__ */ vue.defineComponent({
       setup() {
-        return () => runtimeCore_esmBundler.createVNode(runtimeCore_esmBundler.Fragment, null, [vnode]);
+        return () => vue.createVNode(vue.Fragment, null, [vnode]);
       }
     });
     this.createByComponent(Component, modalProps);
@@ -84,10 +83,10 @@ const _Dialog = class _Dialog {
     const {
       dialogify
     } = Component;
-    const ComponentWithContext = /* @__PURE__ */ runtimeCore_esmBundler.defineComponent({
+    const ComponentWithContext = /* @__PURE__ */ vue.defineComponent({
       setup: () => {
-        const appContext = runtimeCore_esmBundler.inject(DialogAppContext);
-        runtimeCore_esmBundler.provide(DialogContext, this);
+        const appContext = vue.inject(DialogAppContext);
+        vue.provide(DialogContext, this);
         const onOk = async () => {
           var _a;
           await ((_a = this.onConfirmCallback) == null ? void 0 : _a.call(this, this));
@@ -117,8 +116,8 @@ const _Dialog = class _Dialog {
             // 优先级低于modalProps
             ...modalProps
           };
-          return runtimeCore_esmBundler.createVNode(_Dialog.ModalComponent, computedModalProps, {
-            default: () => [runtimeCore_esmBundler.createVNode(Component, componentProps, null)]
+          return vue.createVNode(_Dialog.ModalComponent, computedModalProps, {
+            default: () => [vue.createVNode(Component, componentProps, null)]
           });
         };
       }
@@ -152,7 +151,7 @@ __publicField(_Dialog, "modalControllerAdapter", modalController.antdModalAdvanc
 let Dialog = _Dialog;
 const DialogContext = Symbol("DialogContext");
 const DialogAppContext = Symbol("DialogAppContext");
-const DialogProvider = /* @__PURE__ */ runtimeCore_esmBundler.defineComponent({
+const DialogProvider = /* @__PURE__ */ vue.defineComponent({
   props: {
     ModalComponent: {
       type: Object,
@@ -170,8 +169,8 @@ const DialogProvider = /* @__PURE__ */ runtimeCore_esmBundler.defineComponent({
       modalControllerAdapter
     } = props;
     const [store, dispatch] = useDialogReducer.useDialogReducer();
-    runtimeCore_esmBundler.provide(DialogAppContext, store);
-    runtimeCore_esmBundler.onMounted(() => {
+    vue.provide(DialogAppContext, store);
+    vue.onMounted(() => {
       Dialog.install({
         ModalComponent,
         modalControllerAdapter
@@ -180,11 +179,11 @@ const DialogProvider = /* @__PURE__ */ runtimeCore_esmBundler.defineComponent({
     });
     return () => {
       var _a;
-      return runtimeCore_esmBundler.createVNode(runtimeCore_esmBundler.Fragment, null, [(_a = slots.default) == null ? void 0 : _a.call(slots), store.value.dialogs.map((dialog, i) => {
+      return vue.createVNode(vue.Fragment, null, [(_a = slots.default) == null ? void 0 : _a.call(slots), store.value.dialogs.map((dialog, i) => {
         const {
           ComponentWithDialogContext
         } = dialog;
-        return runtimeCore_esmBundler.createVNode(ComponentWithDialogContext, {
+        return vue.createVNode(ComponentWithDialogContext, {
           "key": i
         }, null);
       })]);

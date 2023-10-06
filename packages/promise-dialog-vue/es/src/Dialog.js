@@ -4,10 +4,9 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-import "../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js";
+import { isVNode, defineComponent, provide, onMounted, createVNode, Fragment, inject } from "vue";
 import { antdModalAdvancedController, dialogController2ModalController } from "./modal-controller.js";
 import { dialogActions, useDialogReducer } from "./use-dialog-reducer.js";
-import { isVNode, defineComponent, createVNode, Fragment, inject, provide, onMounted } from "../node_modules/.pnpm/@vue_runtime-core@3.3.4/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js";
 const _Dialog = class _Dialog {
   constructor() {
     // 弹窗控制器

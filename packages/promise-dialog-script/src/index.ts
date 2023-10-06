@@ -5,14 +5,13 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import path from 'path'
 import fs from 'fs-extra'
+import dts from 'vite-plugin-dts'
 
 async function run() {
   await fs.emptyDir(path.resolve(process.cwd(), 'es'))
   await fs.emptyDir(path.resolve(process.cwd(), 'lib'))
   await build(config)
 }
-
-// const promiseDialogVuePath = 'packages/promise-dialog-vue'
 
 const config: InlineConfig = {
   mode: 'production',
@@ -23,7 +22,8 @@ const config: InlineConfig = {
     minify: false,
     reportCompressedSize: false,
     rollupOptions: {
-      input: 'index.ts',
+      external: ['vue', 'react'], // 外部依赖
+      input: 'src/index.ts',
       output: [
         {
           format: 'es',
@@ -43,12 +43,23 @@ const config: InlineConfig = {
     },
     // 开启lib模式，但不使用下面配置
     lib: {
-      entry: 'index.ts',
+      entry: 'src/index.ts',
       formats: ['es', 'cjs']
     }
   },
   // @ts-ignore vite内部类型错误
-  plugins: [vue(), vueJsx()]
+  plugins: [
+    vue(),
+    vueJsx(),
+    dts({
+      outDir: 'es',
+      tsconfigPath: path.resolve(process.cwd(), 'tsconfig.app.json'),
+    }),
+    dts({
+      outDir: 'lib',
+      tsconfigPath: path.resolve(process.cwd(), 'tsconfig.app.json'),
+    }),
+  ]
 }
 
 run()

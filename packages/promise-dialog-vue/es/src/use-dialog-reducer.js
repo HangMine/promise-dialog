@@ -1,5 +1,4 @@
-import "../node_modules/.pnpm/vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js";
-import { shallowRef } from "../node_modules/.pnpm/@vue_reactivity@3.3.4/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js";
+import { shallowRef } from "vue";
 const dialogActions = {
   pushDialog: (dialog) => ({
     type: "push_dialog",
