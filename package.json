@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "pnpm --filter promise-dialog-vue-doc dev",
+    "start:react": "pnpm --filter promise-dialog-react-doc dev",
     "build": "pnpm --filter promise-dialog-script build && pnpm --filter promise-dialog-vue build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
