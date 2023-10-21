@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "bin": "dist/index.js",
   "scripts": {
-    "buildDev": "ts-node src/index",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

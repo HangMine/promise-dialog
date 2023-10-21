@@ -30,14 +30,14 @@ const config: InlineConfig = {
           dir: 'es',
           entryFileNames: '[name].js',
           preserveModules: true,
-          preserveModulesRoot: ''
+          preserveModulesRoot: 'src'
         },
         {
           format: 'commonjs',
           dir: 'lib',
           entryFileNames: '[name].js',
           preserveModules: true,
-          preserveModulesRoot: ''
+          preserveModulesRoot: 'src'
         }
       ]
     },
@@ -53,10 +53,12 @@ const config: InlineConfig = {
     vueJsx(),
     dts({
       outDir: 'es',
+      rollupTypes: true,
       tsconfigPath: path.resolve(process.cwd(), 'tsconfig.app.json'),
     }),
     dts({
       outDir: 'lib',
+      rollupTypes: true,
       tsconfigPath: path.resolve(process.cwd(), 'tsconfig.app.json'),
     }),
   ]

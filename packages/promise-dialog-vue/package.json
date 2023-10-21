@@ -6,7 +6,6 @@
   "main": "es/src/index",
   "module": "es/src/index",
   "scripts": {
-    "buildDev": "pnpm --filter promise-dialog-script build",
     "build": "promise-dialog-script build",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
