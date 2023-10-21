@@ -5,7 +5,7 @@ const Test1View = () => {
   const { onConfirm, confirm, cancel } = useDialog()
   const [count, setCount] = React.useState(0)
 
-  onConfirm(({ confirm }) => {
+  onConfirm(() => {
     confirm(count)
   })
 

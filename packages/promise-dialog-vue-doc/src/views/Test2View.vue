@@ -3,17 +3,17 @@
     Test2:count {{ count }}
     <button @click="() => count++">add count</button>
     <footer class="flex items-end">
-      <button @click="onConfrim">确认</button>
-      <button @click="onCancel">取消</button>
+      <button @click="diyOnConfrim">确认</button>
+      <button @click="diyOnCancel">取消</button>
     </footer>
   </div>
 </template>
 
 <script lang="ts">
 export default {
-  dialogify:{
-    title:'测试标题',
-    width:1280
+  dialogify: {
+    title: '测试标题',
+    width: 1280
   }
 }
 </script>
@@ -22,14 +22,18 @@ export default {
 import { useDialog } from 'promise-dialog-vue'
 import { ref } from 'vue'
 
-const { confirm,cancel } = useDialog()
+const { onConfirm, confirm, cancel } = useDialog()
 const count = ref(0)
 
-function onConfrim(){
+onConfirm(() => {
+  confirm(count.value)
+})
+
+function diyOnConfrim() {
   confirm(count.value)
 }
 
-function onCancel(){
+function diyOnCancel() {
   cancel()
 }
 </script>
