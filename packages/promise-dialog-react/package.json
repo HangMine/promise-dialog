@@ -1,10 +1,10 @@
 {
-  "name": "promise-dialog-REACT",
+  "name": "promise-dialog-react",
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "es/src/index",
-  "module": "es/src/index",
+  "main": "src/index",
+  "module": "src/index",
   "scripts": {
     "build": "promise-dialog-script build",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
@@ -14,12 +14,12 @@
     "react": ">=16"
   },
   "devDependencies": {
-    "promise-dialog-script": "workspace:^1.0.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "promise-dialog-script": "workspace:^1.0.0",
     "vite": "^4.4.9"
   },
   "keywords": [],
