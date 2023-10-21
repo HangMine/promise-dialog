@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const Dialog = require("./Dialog.js");
+const modalController = require("./modal-controller.js");
+const useDialog = require("./use-dialog.js");
+exports.Dialog = Dialog.Dialog;
+exports.DialogContext = Dialog.DialogContext;
+exports.DialogProvider = Dialog.DialogProvider;
+exports.antdController = modalController.antdController;
+exports.antdModalAdvancedController = modalController.antdModalAdvancedController;
+exports.arcoDesignController = modalController.arcoDesignController;
+exports.dialogController2ModalController = modalController.dialogController2ModalController;
+exports.useDialog = useDialog.useDialog;

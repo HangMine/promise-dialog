@@ -54,12 +54,12 @@ const config: InlineConfig = {
     dts({
       outDir: 'es',
       rollupTypes: true,
-      tsconfigPath: path.resolve(process.cwd(), 'tsconfig.app.json'),
+      tsconfigPath: path.resolve(process.cwd(), 'tsconfig.json'),
     }),
     dts({
       outDir: 'lib',
       rollupTypes: true,
-      tsconfigPath: path.resolve(process.cwd(), 'tsconfig.app.json'),
+      tsconfigPath: path.resolve(process.cwd(), 'tsconfig.json'),
     }),
   ]
 }
