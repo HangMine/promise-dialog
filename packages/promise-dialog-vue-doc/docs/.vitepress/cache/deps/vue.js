@@ -154,6 +154,7 @@ import {
   withModifiers,
   withScopeId
 } from "./chunk-2TIORARE.js";
+import "./chunk-5WWUZCGV.js";
 export {
   BaseTransition,
   BaseTransitionPropsValidators,
