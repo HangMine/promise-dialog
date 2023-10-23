@@ -2,6 +2,7 @@ module.exports = {
   lang: 'zh-CN',
   title: 'Promise Dialog',
   description: '函数式调用对话框',
+  cleanUrls: true,
   head: [
     // 添加图标
     ['link', { rel: 'icon', href: '/favicon.ico' }]
@@ -41,9 +42,9 @@ module.exports = {
 function getSidebar() {
   return [
     {
-      text: '指南',
+      text: '开始',
       items: [
-        { text: '什么是promise dialog?', link: '/introduction/index' },
+        { text: '简介', link: '/introduction/index' },
         { text: '快速上手', link: '/getting-started/index' },
       ]
     }
