@@ -23,18 +23,15 @@ module.exports = {
     smoothScroll: true,
     // 导航栏配置
     nav: [
-      { text: 'Guide', link: '/guide' },
-      {
-        text: 'Dropdown Menu',
-        items: [
-          { text: 'Item A', link: '/item-1' },
-          { text: 'Item B', link: '/item-2' },
-          { text: 'Item C', link: '/item-3' }
-        ]
-      }
+      { text: '指南', link: '/guide/introduction' },
+      { text: 'API', link: '/api/setup' },
     ],
     sidebar: {
-      '/': getSidebar()
+      '/': getSidebar(),
+      '/api/': getApiSidebar(),
+    },
+    outline: {
+      level: [2, 3]
     }
   }
 }
@@ -44,8 +41,20 @@ function getSidebar() {
     {
       text: '开始',
       items: [
-        { text: '简介', link: '/introduction/index' },
-        { text: '快速上手', link: '/getting-started/index' },
+        { text: '简介', link: '/guide/introduction' },
+        { text: '快速上手', link: '/guide/getting-started' },
+      ]
+    }
+  ]
+}
+
+function getApiSidebar() {
+  return [
+    {
+      text: 'API',
+      items: [
+        { text: '安装', link: '/api/setup' },
+        { text: '使用', link: '/api/use' },
       ]
     }
   ]
