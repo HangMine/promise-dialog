@@ -16,7 +16,7 @@ async function openTest1ByComponent() {
 }
 ```
 
-Test1View组件
+弹窗内组件:Test1View
 ```vue
 <template>
   <div class="">
@@ -73,7 +73,7 @@ async function openTest2ByComponentWithDialogify() {
 }
 ```
 
-Test2View组件
+弹窗内组件:Test2View
 ```vue
 <template>
   <div>
