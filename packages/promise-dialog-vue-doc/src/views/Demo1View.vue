@@ -14,7 +14,7 @@
     </li>
   </ul>
 </template>
-<script setup lang="ts">
+<script setup lang="tsx">
 import { useDialog } from 'promise-dialog-vue'
 import Test1View from './Test1View.vue'
 import Test2View from './Test2View.vue'
@@ -26,7 +26,8 @@ async function openTest1ByComponent() {
   console.log('test1 resutl:', result)
 }
 async function openTest1ByVnode() {
-  const result = await dialog(createVNode(Test1View))
+  // const result = await dialog(createVNode(Test1View))
+  const result = await dialog(<Test1View></Test1View>)
   console.log('test1 resutl:', result)
 }
 async function openTest2ByComponentWithDialogify() {

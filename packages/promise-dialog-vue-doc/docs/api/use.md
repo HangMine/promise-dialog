@@ -3,9 +3,10 @@
 
 ## 传组件
 <DialogProvider :ModalComponent="Modal">
-        <button @click="openTest1ByComponent">传组件+默认footer</button>
+        <Button @click="openTest1ByComponent">传组件+默认footer</Button>
 </DialogProvider>
 
+调用弹窗
 ```ts
 // 传组件+默认footer
 async function openTest1ByComponent() {
@@ -15,24 +16,55 @@ async function openTest1ByComponent() {
 }
 ```
 
+Test1View组件
+```vue
+<template>
+  <div class="">
+    Test1:count {{ count }}
+    <button @click="() => count++">add count</button>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { useDialog } from 'promise-dialog-vue'
+import { ref } from 'vue'
+
+const { onConfirm } = useDialog()
+const count = ref(0)
+
+onConfirm(({ confirm }) => {
+  confirm(count.value)
+})
+</script>
+<style scpoed>
+/* @import url() */
+</style>
+```
+
 ## 传Vnode
 <DialogProvider :ModalComponent="Modal">
-      <button @click="openTest1ByVnode">传VNode+默认footer</button>
+      <Button @click="openTest1ByVnode">传VNode+默认footer</Button>
 </DialogProvider>
 
+调用弹窗
 ```ts
 // 传VNode+默认footer
 async function openTest1ByVnode() {
-  const result = await dialog(createVNode(Test1View))
+
+  // jsx
+  const result = await dialog(<Test1View></Test1View>)
+  // createVNode
+  // const result = await dialog(createVNode(Test1View))
   console.log('test1 resutl:', result)
 }
 ```
 
-## 自定义foolter
+## 自定义footer
 <DialogProvider :ModalComponent="Modal">
-      <button @click="openTest2ByComponentWithDIYFooter">传组件+自定义footer</button>
+      <Button @click="openTest2ByComponentWithDIYFooter">传组件+自定义footer</Button>
 </DialogProvider>
 
+调用弹窗
 ```ts
 // 传组件+自定义footer
 async function openTest2ByComponentWithDialogify() {
@@ -41,11 +73,50 @@ async function openTest2ByComponentWithDialogify() {
 }
 ```
 
+Test2View组件
+```vue
+<template>
+  <div>
+    Test2:count {{ count }}
+    <button @click="() => count++">add count</button>
+    <footer class="flex items-end">
+      <button @click="diyOnConfrim">确认</button>
+      <button @click="diyOnCancel">取消</button>
+    </footer>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { useDialog } from 'promise-dialog-vue'
+import { ref } from 'vue'
+
+const { onConfirm, confirm, cancel } = useDialog()
+const count = ref(0)
+
+onConfirm(() => {
+  confirm(count.value)
+})
+
+function diyOnConfrim() {
+  confirm(count.value)
+}
+
+function diyOnCancel() {
+  cancel()
+}
+</script>
+<style scpoed>
+/* @import url() */
+</style>
+
+```
+
 ## dialogify
 <DialogProvider :ModalComponent="Modal">
-      <button @click="openTest2ByComponentWithDialogify">传组件+dialogify</button>
+      <Button @click="openTest2ByComponentWithDialogify">传组件+dialogify</Button>
 </DialogProvider>
 
+调用弹窗
 ```ts
 // 传组件+dialogify
 async function openTest2ByComponentWithDIYFooter() {
@@ -54,9 +125,57 @@ async function openTest2ByComponentWithDIYFooter() {
 }
 ```
 
+TestView2组件增加dialogify配置
+```vue{12-19}
+<template>
+  <div>
+    Test2:count {{ count }}
+    <button @click="() => count++">add count</button>
+    <footer class="flex items-end">
+      <button @click="diyOnConfrim">确认</button>
+      <button @click="diyOnCancel">取消</button>
+    </footer>
+  </div>
+</template>
+
+<script lang="ts">
+export default {
+  dialogify: {
+    title: '测试标题',
+    width: 1280
+  }
+}
+</script>
+
+<script lang="ts" setup>
+import { useDialog } from 'promise-dialog-vue'
+import { ref } from 'vue'
+
+const { onConfirm, confirm, cancel } = useDialog()
+const count = ref(0)
+
+onConfirm(() => {
+  confirm(count.value)
+})
+
+function diyOnConfrim() {
+  confirm(count.value)
+}
+
+function diyOnCancel() {
+  cancel()
+}
+</script>
+<style scpoed>
+/* @import url() */
+</style>
+
+```
+
+
 <script setup>
 import { createVNode } from 'vue'
-import { Modal,Tabs,TabPane } from 'ant-design-vue'
+import { Modal,Tabs,TabPane,Button } from 'ant-design-vue'
 import { DialogProvider } from 'promise-dialog-vue'
 import Demo1View from '../../src/views/Demo1View.vue'
 import Test1View from '../../src/views/Test1View.vue'

@@ -14,4 +14,5 @@ promise管理，点击确认resolve，点击取消reject，让弹窗流程、数
 ## 包含上下文
 弹窗内部的组件包含上下文，不会丢失上下文的配置、全局组件等
 
-
+## 适配vue和react
+适配vue和react，和各种UI框架

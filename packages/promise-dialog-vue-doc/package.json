@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^4.0.3",
+    "element-plus": "^2.4.1",
     "promise-dialog-vue": "workspace:^1.0.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"

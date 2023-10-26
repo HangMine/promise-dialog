@@ -24,7 +24,7 @@ module.exports = {
     // 导航栏配置
     nav: [
       { text: '指南', link: '/guide/introduction' },
-      { text: 'API', link: '/api/setup' },
+      { text: 'vue', link: '/api/setup' },
     ],
     sidebar: {
       '/': getSidebar(),

@@ -30,6 +30,17 @@ export function arcoDesignController(dialogController: DialogController) {
   return dialogController;
 }
 
+export function elementPlusController(dialogController: DialogController) {
+  const { visible, afterClose, onOk, onCancel } = dialogController;
+  return {
+    modelValue: visible,
+    closed: afterClose,
+    // elementPlus并没有自带确定取消按钮，需要自己实现，预留下面字段给开发者使用
+    onOk,
+    onCancel
+  };
+}
+
 export function dialogController2ModalController(
   dialogController: DialogController,
   adapter: ModalControllerAdapter,
