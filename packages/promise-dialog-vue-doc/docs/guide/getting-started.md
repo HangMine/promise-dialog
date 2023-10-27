@@ -14,10 +14,10 @@ $ yarn add promise-dialog-vue
 # pnpm
 $ pnpm install promise-dialog-vue
 ```
-### 引入包裹组件
-在应用外围包裹一次即可全局生效
+### 传入模态框组件
+传入模态框组件，并包裹APP
 ::: tip
-默认适配ant-design-vue >=4的UI框架，点击这里[适配其它框架](/api/setup)
+默认适配ant-design-vue >=4的UI框架，点击这里[适配其它框架](/vue/use/setup)
 :::
 ```vue 
 <script setup lang="ts">
@@ -36,7 +36,7 @@ import { Modal } from 'ant-design-vue'
    <Button @click="openTest1ByComponent">传组件+默认footer</Button>
 </DialogProvider>
 
-调用弹窗
+调用模态框
 ```ts
 import { useDialog } from 'promise-dialog-vue'
 import Test1View from './Test1View.vue'
@@ -50,7 +50,7 @@ async function openTest1ByComponent() {
   console.log('test1 resutl:', result)
 }
 ```
-弹窗内组件:Test1View
+模态框内组件:Test1View
 ```vue
 <template>
   <div class="">
@@ -88,10 +88,10 @@ $ yarn add promise-dialog-react
 # pnpm
 $ pnpm install promise-dialog-react
 ```
-### 引入包裹组件
-在应用外围包裹一次即可全局生效
+### 传入模态框组件
+传入模态框组件，并包裹APP
 ::: tip
-默认适配ant-design >=5的UI框架，点击这里[适配其它框架](/api/setup)
+默认适配ant-design >=5的UI框架，点击这里[适配其它框架](/vue/use/setup)
 :::
 ```tsx 
 import { DialogProvider } from 'promise-dialog-react'
@@ -106,7 +106,7 @@ import { Modal } from 'ant-design'
    <Button @click="openTest1ByComponent">传组件+默认footer</Button>
 </DialogProvider>
 
-调用弹窗
+调用模态框
 ```ts
 import { useDialog } from 'promise-dialog-react'
 import Test1View from './Test1View'
@@ -120,7 +120,7 @@ async function openTest1ByComponent() {
   console.log('test1 resutl:', result)
 }
 ```
-弹窗内组件:Test1View
+模态框内组件:Test1View
 ```tsx
 import React from 'react'
 import { useDialog } from 'promise-dialog-react'

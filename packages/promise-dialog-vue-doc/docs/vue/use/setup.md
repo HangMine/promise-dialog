@@ -1,4 +1,4 @@
-# 安装
+# 引入模态框
 
 ## 根据不同UI框架传递适配器
 
@@ -62,9 +62,9 @@ import { ElDialog } from 'element-plus'
 </template>
 ```
 
-### 自定义弹窗组件
+### 自定义模态框组件
 ::: tip
-promise-dialog的控制器类型如下，只要按下面属性接入自定义弹窗组件即可
+promise-dialog的控制器类型如下，只要按下面属性接入自定义模态框组件即可
 :::
 ```ts
 type DialogController = {

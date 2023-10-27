@@ -4,7 +4,7 @@ import { Dialog, DialogContext } from './Dialog'
 import { ComponentProps, DialogFC, ModalProps } from './types'
 
 export function useDialog() {
-  // 调用useDialog所关联的dialog实例
+  // 调用useDialog所关联的Dialog
   const currentDialog = useContext(DialogContext)
 
   const dialog = Dialog.open

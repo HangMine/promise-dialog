@@ -24,11 +24,11 @@ module.exports = {
     // 导航栏配置
     nav: [
       { text: '指南', link: '/guide/introduction' },
-      { text: 'vue', link: '/api/setup' },
+      { text: 'vue', link: '/vue/use/setup' },
     ],
     sidebar: {
       '/': getSidebar(),
-      '/api/': getApiSidebar(),
+      '/vue/': getVueSidebar(),
     },
     outline: {
       level: [2, 3]
@@ -48,14 +48,21 @@ function getSidebar() {
   ]
 }
 
-function getApiSidebar() {
+function getVueSidebar() {
   return [
+    {
+      text: '使用',
+      items: [
+        { text: '引入模态框', link: '/vue/use/setup' },
+        { text: '使用场景', link: '/vue/use/use' },
+      ],
+    },
     {
       text: 'API',
       items: [
-        { text: '安装', link: '/api/setup' },
-        { text: '使用', link: '/api/use' },
-      ]
+        { text: 'useDialog', link: '/vue/api/useDialogApi' },
+        { text: 'Dialog', link: '/vue/api/DialogApi' },
+      ],
     }
   ]
 }

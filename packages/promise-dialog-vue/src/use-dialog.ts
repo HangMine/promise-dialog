@@ -3,7 +3,7 @@ import { inject } from 'vue'
 import { Dialog, DialogContext } from './Dialog'
 
 export function useDialog() {
-  // 调用useDialog所关联的dialog实例
+  // 调用useDialog所关联的Dialog
   const currentDialog = inject<Dialog>(DialogContext)
 
   const dialog = Dialog.open
