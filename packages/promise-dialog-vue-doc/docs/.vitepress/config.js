@@ -5,7 +5,7 @@ module.exports = {
   cleanUrls: true,
   head: [
     // 添加图标
-    ['link', { rel: 'icon', href: '/favicon.ico' }]
+    ['link', { rel: 'icon', href: '/public/logo.svg' }]
   ],
   plugins: [
     '@vuepress/active-header-links',   // 页面滚动时自动激活侧边栏链接的插件
