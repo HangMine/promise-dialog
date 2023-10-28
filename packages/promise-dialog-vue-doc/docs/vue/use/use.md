@@ -81,7 +81,7 @@ TestView2组件增加dialogify配置
 <<< ../../../src/views/Test2View.vue{12-19}
 
 
-<script setup>
+<script lang="ts" setup>
 import { createVNode } from 'vue'
 import { Modal,Tabs,TabPane,Button } from 'ant-design-vue'
 import { DialogProvider } from 'promise-dialog-vue'
