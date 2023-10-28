@@ -177,8 +177,8 @@ export class Dialog {
     this.hide?.()
   }
   // 自定义的cancel(外部会直接调用，通过箭头函数保证this指向)
-  cancel = (resolveResult?: unknown) => {
-    this.dialogPromise.reject?.(resolveResult)
+  cancel = (rejectResult?: unknown) => {
+    this.dialogPromise.reject?.(rejectResult)
     this.hide?.()
   }
 }

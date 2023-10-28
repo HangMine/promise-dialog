@@ -2,8 +2,8 @@
 
 # 简介
 
-## 什么是 promise-dialog?
-promise-dialog让 模态框开发 简单 高效
+## 什么是 Promise Dialog?
+Promise Dialog让 模态框开发 简单 高效
 
 ## 函数式调用
 通过函数直接调起模态框，不用再写Modal组件，写visible、onOk、onCancel等参数

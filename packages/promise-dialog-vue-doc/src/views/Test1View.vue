@@ -9,10 +9,10 @@
 import { useDialog } from 'promise-dialog-vue'
 import { ref } from 'vue'
 
-const { onConfirm } = useDialog()
+const { onConfirm, confirm } = useDialog()
 const count = ref(0)
 
-onConfirm(({ confirm }) => {
+onConfirm(() => {
   confirm(count.value)
 })
 </script>

@@ -64,7 +64,7 @@ import { ElDialog } from 'element-plus'
 
 ### 自定义模态框组件
 ::: tip
-promise-dialog的控制器类型如下，只要按下面属性接入自定义模态框组件即可
+Promise Dialog的控制器类型如下，只要按下面属性接入自定义模态框组件即可
 :::
 ```ts
 type DialogController = {
