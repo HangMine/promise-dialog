@@ -118,6 +118,7 @@ importers:
       jsdom: ^22.1.0
       npm-run-all2: ^6.0.6
       prettier: ^3.0.3
+      promise-dialog-react: workspace:^1.0.0
       promise-dialog-vue: workspace:^1.0.0
       typescript: ~5.2.0
       vite: ^4.4.9
@@ -129,6 +130,7 @@ importers:
     dependencies:
       ant-design-vue: registry.npmmirror.com/ant-design-vue/4.0.3_vue@3.3.4
       element-plus: registry.npmmirror.com/element-plus/2.4.1_vue@3.3.4
+      promise-dialog-react: link:../promise-dialog-react
       promise-dialog-vue: link:../promise-dialog-vue
       vue: registry.npmmirror.com/vue/3.3.4
       vue-router: registry.npmmirror.com/vue-router/4.2.5_vue@3.3.4

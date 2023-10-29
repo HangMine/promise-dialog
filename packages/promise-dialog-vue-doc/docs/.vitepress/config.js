@@ -5,7 +5,7 @@ module.exports = {
   cleanUrls: true,
   head: [
     // 添加图标
-    ['link', { rel: 'icon', href: '/public/logo.svg' }]
+    ['link', { rel: 'icon', href: '/logo.svg' }]
   ],
   plugins: [
     '@vuepress/active-header-links',   // 页面滚动时自动激活侧边栏链接的插件
@@ -26,10 +26,12 @@ module.exports = {
     nav: [
       { text: '指南', link: '/guide/introduction' },
       { text: 'vue', link: '/vue/use/setup' },
+      { text: 'react', link: '/react/use/setup' },
     ],
     sidebar: {
       '/': getSidebar(),
       '/vue/': getVueSidebar(),
+      '/react/': getReactSidebar(),
     },
     outline: {
       level: [2, 3]
@@ -66,6 +68,25 @@ function getVueSidebar() {
       items: [
         { text: 'useDialog', link: '/vue/api/useDialogApi' },
         { text: 'Dialog', link: '/vue/api/DialogApi' },
+      ],
+    }
+  ]
+}
+
+function getReactSidebar() {
+  return [
+    {
+      text: '使用',
+      items: [
+        { text: '引入模态框', link: '/react/use/setup' },
+        { text: '使用场景', link: '/react/use/use' },
+      ],
+    },
+    {
+      text: 'API',
+      items: [
+        { text: 'useDialog', link: '/react/api/useDialogApi' },
+        { text: 'Dialog', link: '/react/api/DialogApi' },
       ],
     }
   ]

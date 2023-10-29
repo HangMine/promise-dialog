@@ -33,8 +33,8 @@ import { Modal } from 'ant-design-vue'
 ### arco design
 ```vue 
 <script setup lang="ts">
-import { DialogProvider, antdController } from 'promise-dialog-vue'
-import { Modal } from 'ant-design-vue'
+import { DialogProvider, antdController } from 'promise-dialog-vue's
+import { Modal } from '@arco-design/web-vue'
 </script>
 
 <template>

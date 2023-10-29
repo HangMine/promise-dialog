@@ -10,8 +10,7 @@
 ```ts
 // 传组件+默认footer
 async function openTest1ByComponent() {
-  const result = await dialog<number>(Test1View)
-  // result为点击确认的结果
+  const result = await dialog<number>(Test1View, { message: '这是传进来的props' })
   console.log('test1 resutl:', result)
 }
 ```
@@ -29,11 +28,10 @@ async function openTest1ByComponent() {
 ```ts
 // 传VNode+默认footer
 async function openTest1ByVnode() {
-
   // jsx
-  const result = await dialog<number>(<Test1View></Test1View>)
+  const result = await dialog<number>(<Test1View message="这是传进来的props"></Test1View>)
   // createVNode
-  // const result = await dialog<number>(createVNode(Test1View))
+  // const result = await dialog<number>(createVNode(Test1View, { message: '这是传进来的props' }))
   console.log('test1 resutl:', result)
 }
 ```
@@ -48,7 +46,7 @@ async function openTest1ByVnode() {
 // 传组件+自定义footer
 async function openTest2ByComponentWithDialogify() {
   const result = await dialog<number>(Test2View)
-  console.log('test1 resut2:', result)
+  console.log('test2 result:', result)
 }
 ```
 
@@ -72,7 +70,7 @@ async function openTest2ByComponentWithDIYFooter() {
   const result = await dialog<number>(Test2View, {}, { footer: null })
   // 模态框props覆盖
   // const result = await dialog<number>(Test2View, {title:'我是覆盖的标题'}, { footer: null })
-  console.log('test1 resut2:', result)
+  console.log('test2 result:', result)
 }
 ```
 
@@ -84,29 +82,34 @@ TestView2组件增加dialogify配置
 <script lang="ts" setup>
 import { createVNode } from 'vue'
 import { Modal,Tabs,TabPane,Button } from 'ant-design-vue'
-import { DialogProvider } from 'promise-dialog-vue'
+import { useDialog, DialogProvider } from 'promise-dialog-vue'
 import Demo1View from '../../../src/views/Demo1View.vue'
 import Test1View from '../../../src/views/Test1View.vue'
 import Test2View from '../../../src/views/Test2View.vue'
-import { useDialog } from 'promise-dialog-vue'
 
 const { dialog } = useDialog()
+
 async function openTest1ByComponent() {
-  const result = await dialog<number>(Test1View)
+  const result = await dialog<number>(Test1View, { message: '这是传进来的props' })
   console.log('test1 resutl:', result)
 }
+
 async function openTest1ByVnode() {
-  const result = await dialog<number>(createVNode(Test1View))
+  // jsx
+  // const result = await dialog<number>(<Test1View message="这是传进来的props"></Test1View>)
+  // createVNode
+  const result = await dialog<number>(createVNode(Test1View, { message: '这是传进来的props' }))
   console.log('test1 resutl:', result)
 }
+
 async function openTest2ByComponentWithDialogify() {
   const result = await dialog<number>(Test2View)
-  console.log('test1 resut2:', result)
+  console.log('test2 result:', result)
 }
 
 async function openTest2ByComponentWithDIYFooter() {
   const result = await dialog<number>(Test2View, {}, { footer: null })
-  console.log('test1 resut2:', result)
+  console.log('test2 result:', result)
 }
 </script>
 

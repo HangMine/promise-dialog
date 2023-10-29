@@ -22,22 +22,24 @@ import { createVNode } from 'vue'
 
 const { dialog } = useDialog()
 async function openTest1ByComponent() {
-  const result = await dialog(Test1View)
+  const result = await dialog<number>(Test1View, { message: '这是传进来的props' })
   console.log('test1 resutl:', result)
 }
 async function openTest1ByVnode() {
-  // const result = await dialog(createVNode(Test1View))
-  const result = await dialog(<Test1View></Test1View>)
+  // jsx
+  const result = await dialog<number>(<Test1View message="这是传进来的props"></Test1View>)
+  // createVNode
+  // const result = await dialog<number>(createVNode(Test1View, { message: '这是传进来的props' }))
   console.log('test1 resutl:', result)
 }
 async function openTest2ByComponentWithDialogify() {
   const result = await dialog(Test2View)
-  console.log('test1 resut2:', result)
+  console.log('test2 result:', result)
 }
 
 async function openTest2ByComponentWithDIYFooter() {
   const result = await dialog(Test2View, {}, { footer: null })
-  console.log('test1 resut2:', result)
+  console.log('test2 result:', result)
 }
 </script>
 <style></style>

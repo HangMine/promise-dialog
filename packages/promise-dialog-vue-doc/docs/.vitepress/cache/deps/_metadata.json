@@ -1,30 +1,36 @@
 {
-  "hash": "ac0d4636",
-  "browserHash": "49cdf5b0",
+  "hash": "22d42867",
+  "browserHash": "72cbda43",
   "optimized": {
     "vue": {
       "src": "../../../../../../node_modules/.pnpm/registry.npmmirror.com+vue@3.3.4/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "b5ded664",
+      "fileHash": "dfb51dec",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
       "src": "../../../../../../node_modules/.pnpm/registry.npmmirror.com+@vue+devtools-api@6.5.1/node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "b98a9324",
+      "fileHash": "f72258a7",
       "needsInterop": false
     },
     "@theme/index": {
       "src": "../../../../../../node_modules/.pnpm/registry.npmmirror.com+vitepress@1.0.0-rc.22_lbfa5l57gfvmfe3tq7agx3mery/node_modules/vitepress/dist/client/theme-default/index.js",
       "file": "@theme_index.js",
-      "fileHash": "c8edec97",
+      "fileHash": "6016b06e",
       "needsInterop": false
     },
     "ant-design-vue": {
       "src": "../../../../../../node_modules/.pnpm/registry.npmmirror.com+ant-design-vue@4.0.3_vue@3.3.4/node_modules/ant-design-vue/es/index.js",
       "file": "ant-design-vue.js",
-      "fileHash": "82c061ea",
+      "fileHash": "b7414236",
       "needsInterop": false
+    },
+    "react": {
+      "src": "../../../../../../node_modules/.pnpm/registry.npmmirror.com+react@18.2.0/node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "0ba42e74",
+      "needsInterop": true
     }
   },
   "chunks": {
