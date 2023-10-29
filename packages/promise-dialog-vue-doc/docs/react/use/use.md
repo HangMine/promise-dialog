@@ -20,9 +20,7 @@
 <<< ../../../../promise-dialog-react-doc/src/views/Test1View.tsx
 
 ## 传组件
-<DialogProvider :ModalComponent="Modal">
-      <Button @click="openTest1ByVnode">传组件+默认footer</Button>
-</DialogProvider>
+<Button @click="openTest1ByVnode">传组件+默认footer</Button>
 
 调用模态框
 ```ts
@@ -34,9 +32,7 @@
 ```
 
 ## 自定义footer
-<DialogProvider :ModalComponent="Modal">
-      <Button @click="openTest2ByComponentWithDIYFooter">传ReactNode+自定义footer</Button>
-</DialogProvider>
+<Button @click="openTest2ByComponentWithDIYFooter">传ReactNode+自定义footer</Button>
 
 调用模态框
 ```ts
@@ -56,9 +52,7 @@
 ::: tip
 dialogify可以通过dialog的模态框参数进行覆盖
 :::
-<DialogProvider :ModalComponent="Modal">
-      <Button @click="openTest2ByComponentWithDialogify">传ReactNode+dialogify</Button>
-</DialogProvider>
+<Button @click="openTest2ByComponentWithDialogify">传ReactNode+dialogify</Button>
 
 调用模态框
 ```ts

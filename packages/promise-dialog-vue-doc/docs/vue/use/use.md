@@ -20,9 +20,8 @@ async function openTest1ByComponent() {
 <<< ../../../src/views/Test1View.vue
 
 ## 传Vnode
-<DialogProvider :ModalComponent="Modal">
-      <Button @click="openTest1ByVnode">传VNode+默认footer</Button>
-</DialogProvider>
+<Button @click="openTest1ByVnode">传VNode+默认footer</Button>
+
 
 调用模态框
 ```ts
@@ -37,9 +36,7 @@ async function openTest1ByVnode() {
 ```
 
 ## 自定义footer
-<DialogProvider :ModalComponent="Modal">
-      <Button @click="openTest2ByComponentWithDIYFooter">传组件+自定义footer</Button>
-</DialogProvider>
+<Button @click="openTest2ByComponentWithDIYFooter">传组件+自定义footer</Button>
 
 调用模态框
 ```ts
@@ -59,9 +56,7 @@ async function openTest2ByComponentWithDialogify() {
 ::: tip
 dialogify可以通过dialog的模态框参数进行覆盖
 :::
-<DialogProvider :ModalComponent="Modal">
-      <Button @click="openTest2ByComponentWithDialogify">传组件+dialogify</Button>
-</DialogProvider>
+<Button @click="openTest2ByComponentWithDialogify">传组件+dialogify</Button>
 
 调用模态框
 ```ts
@@ -82,7 +77,7 @@ TestView2组件增加dialogify配置
 <script lang="ts" setup>
 import { createVNode } from 'vue'
 import { Modal,Tabs,TabPane,Button } from 'ant-design-vue'
-import { useDialog, DialogProvider } from 'promise-dialog-vue'
+import { useDialog, DialogProvider,Dialog } from 'promise-dialog-vue'
 import Demo1View from '../../../src/views/Demo1View.vue'
 import Test1View from '../../../src/views/Test1View.vue'
 import Test2View from '../../../src/views/Test2View.vue'

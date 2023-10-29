@@ -15,6 +15,8 @@ hero:
 
 
 <script setup>
-  import Home from '../src/views/Home.vue'
+import { useDialog, Dialog } from 'promise-dialog-vue'
+import { Modal,Tabs,TabPane,Button } from 'ant-design-vue'
+
 
 </script>
