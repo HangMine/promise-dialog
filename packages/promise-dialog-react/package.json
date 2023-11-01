@@ -3,11 +3,11 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index",
-  "module": "src/index",
+  "main": "es/index",
+  "module": "es/index",
   "scripts": {
-    "build": "promise-dialog-script build",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "build": "promise-dialog-script build-react",
+    "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {

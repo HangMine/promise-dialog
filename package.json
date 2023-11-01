@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prepare": "pnpm build && pnpm build:react",
-    "start": "xpnpm --filter promise-dialog-vue-doc dev",
+    "start": "pnpm --filter promise-dialog-vue-doc dev",
     "start:react": "pnpm --filter promise-dialog-react-doc dev",
     "build": "pnpm --filter promise-dialog-script build && pnpm --filter promise-dialog-vue build",
     "build:react": "pnpm --filter promise-dialog-script build && pnpm --filter promise-dialog-react build",
+    "docs:dev": "pnpm --filter promise-dialog-vue-doc docs:dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

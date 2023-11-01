@@ -6,6 +6,17 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import path from 'path'
 import fs from 'fs-extra'
 import dts from 'vite-plugin-dts'
+import { Command } from 'commander'
+
+const program = new Command();
+
+enum commandEnum {
+  BuildReact = 'build-react',
+  BuildVue = 'build-vue',
+}
+const { args } = program.parse(process.argv);
+const [command] = args;
+
 
 async function run() {
   await fs.emptyDir(path.resolve(process.cwd(), 'es'))
@@ -22,7 +33,7 @@ const config: InlineConfig = {
     minify: false,
     reportCompressedSize: false,
     rollupOptions: {
-      // external: ['vue', 'react'], // 外部依赖
+      external: ['vue', 'react'], // 外部依赖
       input: 'src/index.ts',
       output: [
         {
@@ -49,8 +60,7 @@ const config: InlineConfig = {
   },
   // @ts-ignore vite内部类型错误
   plugins: [
-    vue(),
-    vueJsx(),
+    ...command === commandEnum.BuildVue ? [vue(), vueJsx()] : [],
     dts({
       outDir: 'es',
       rollupTypes: true,

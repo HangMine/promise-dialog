@@ -6,7 +6,7 @@
   "main": "es/index",
   "module": "es/index",
   "scripts": {
-    "build": "promise-dialog-script build",
+    "build": "promise-dialog-script build-vue",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
