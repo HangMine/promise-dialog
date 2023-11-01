@@ -6,6 +6,7 @@ import type { DialogDispatch, DialogStore } from './use-dialog-reducer'
 import { inject, onMounted, provide, defineComponent, isVNode } from 'vue'
 import { antdModalAdvancedController, dialogController2ModalController } from './modal-controller'
 import { dialogActions, useDialogReducer } from './use-dialog-reducer'
+import { uniqueId } from 'lodash-es'
 
 export class Dialog {
   // 在使用之前需要先安装（在DialogProvider已经安装）
@@ -55,6 +56,10 @@ export class Dialog {
   static clearDialogs() {
     Dialog.dialogDispatch(dialogActions.clearDialogs())
   }
+
+  // dialog的唯一标识
+  id = uniqueId('promise-dialog-')
+
   // 弹窗控制器
   dialogController: DialogController | null = null
 

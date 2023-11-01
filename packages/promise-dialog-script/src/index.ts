@@ -22,7 +22,7 @@ const config: InlineConfig = {
     minify: false,
     reportCompressedSize: false,
     rollupOptions: {
-      external: ['vue', 'react'], // 外部依赖
+      // external: ['vue', 'react'], // 外部依赖
       input: 'src/index.ts',
       output: [
         {

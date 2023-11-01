@@ -9,7 +9,7 @@ import {
 } from './modal-controller'
 import { ComponentProps, DialogFC, ModalProps, UnkownFC } from './types'
 import { DialogAction, dialogActions, DialogStore, useDialogReducer } from './use-dialog-reducer'
-
+import { uniqueId } from 'lodash-es'
 export class Dialog {
   // 在使用之前需要先安装
   static install(options: {
@@ -60,6 +60,10 @@ export class Dialog {
   static isReactNode(value: React.ReactNode | DialogFC): value is React.ReactNode {
     return isValidElement(value)
   }
+
+  // dialog的唯一标识
+  id = uniqueId('promise-dialog-')
+
   // 弹窗控制器
   dialogController: DialogController | null = null
 
@@ -68,6 +72,7 @@ export class Dialog {
     resolve?: (resolveResult?: any) => void
     reject?: (rejectResult?: any) => void
   } = {}
+
   // 自带footer的确认回调
   onConfirmCallback?: (dialog: Dialog) => void
   // 自带footer的取消回调
@@ -209,9 +214,9 @@ export function DialogProvider(
   return (
     <DialogAppContext.Provider value={store}>
       {children}
-      {store.dialogs.map((dialog, i) => {
-        const { ComponentWithDialogContext } = dialog
-        return <ComponentWithDialogContext key={i}></ComponentWithDialogContext>
+      {store.dialogs.map((dialog) => {
+        const { ComponentWithDialogContext, id } = dialog
+        return <ComponentWithDialogContext key={id}></ComponentWithDialogContext>
       })}
     </DialogAppContext.Provider>
   )
