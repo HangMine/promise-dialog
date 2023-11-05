@@ -10,6 +10,7 @@
     "build": "pnpm --filter promise-dialog-script build && pnpm --filter promise-dialog-vue build",
     "build:react": "pnpm --filter promise-dialog-script build && pnpm --filter promise-dialog-react build",
     "docs:dev": "pnpm --filter promise-dialog-vue-doc docs:dev",
+    "docs:build": "pnpm --filter promise-dialog-vue-doc docs:build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

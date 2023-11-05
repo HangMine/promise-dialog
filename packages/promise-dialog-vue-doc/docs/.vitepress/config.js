@@ -1,4 +1,6 @@
 module.exports = {
+  base: '/promise-dialog/',
+  outDir: '../../../docs',
   lang: 'zh-CN',
   title: 'Promise Dialog',
   description: '函数式调用对话框',
