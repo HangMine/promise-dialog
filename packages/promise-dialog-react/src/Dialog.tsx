@@ -61,6 +61,8 @@ export class Dialog {
     return isValidElement(value)
   }
 
+  static store: DialogStore
+
   // dialog的唯一标识
   id = uniqueId('promise-dialog-')
 
@@ -108,47 +110,56 @@ export class Dialog {
     modalProps: ModalProps = {}
   ) {
     const { dialogify } = Component
-    const ComponentWithContext = withDialogContext(() => {
-      const appContext = useContext(DialogAppContext)
-      const visible = appContext?.showDialogs.includes(this) || false
-      const onOk = async () => {
-        await this.onConfirmCallback?.(this)
-        this.hide()
-      }
+    const ComponentWithContext = withDialogContext(
+      (props: { injectComponentProps: DialogStore['injectComponentPropsMap'] }) => {
+        const appContext = useContext(DialogAppContext)
+        const visible = appContext?.showDialogs.includes(this) || false
 
-      const onCancel = async () => {
-        await this.onCancelCallback?.(this)
-        this.hide()
-      }
+        const onOk = async () => {
+          await this.onConfirmCallback?.(this)
+          this.hide()
+        }
 
-      const afterClose = async () => {
-        Dialog.dialogDispatch(dialogActions.popDialog(this))
-      }
+        const onCancel = async () => {
+          await this.onCancelCallback?.(this)
+          this.hide()
+        }
 
-      this.dialogController = {
-        visible,
-        onOk,
-        onCancel,
-        afterClose
-      }
+        const afterClose = async () => {
+          Dialog.dialogDispatch(dialogActions.popDialog(this))
+        }
 
-      const modalController = dialogController2ModalController(
-        this.dialogController,
-        Dialog.modalControllerAdapter
-      )
+        this.dialogController = {
+          visible,
+          onOk,
+          onCancel,
+          afterClose
+        }
 
-      const computedModalProps = {
-        ...modalController,
-        ...dialogify, // 优先级低于modalProps
-        ...modalProps
-      }
+        const modalController = dialogController2ModalController(
+          this.dialogController,
+          Dialog.modalControllerAdapter
+        )
 
-      return (
-        <Dialog.ModalComponent {...computedModalProps}>
-          <Component {...componentProps}></Component>
-        </Dialog.ModalComponent>
-      )
-    }, this)
+        const computedModalProps = {
+          ...modalController,
+          ...dialogify, // 优先级低于modalProps
+          ...modalProps
+        }
+
+        const computedComponentProps = {
+          ...componentProps,
+          ...props.injectComponentProps
+        }
+
+        return (
+          <Dialog.ModalComponent {...computedModalProps}>
+            <Component {...computedComponentProps}></Component>
+          </Dialog.ModalComponent>
+        )
+      },
+      this
+    )
     this._ComponentWithDialogContext = ComponentWithContext
   }
   // 弹出Dialog
@@ -162,6 +173,7 @@ export class Dialog {
   // 隐藏Dialog
   hide() {
     Dialog.dialogDispatch(dialogActions.hideDialog(this))
+    Dialog.dialogDispatch(dialogActions.removeInjectComponentProps(this))
   }
   // 自带footer的确认
   onConfirm(callback: Dialog['onConfirmCallback']) {
@@ -180,6 +192,9 @@ export class Dialog {
   cancel = (rejectResult?: unknown) => {
     this.dialogPromise.reject?.(rejectResult)
     this.hide?.()
+  }
+  updateComponentProps = (injectComponentProps: DialogStore['injectComponentPropsMap'][string]) => {
+    Dialog.dialogDispatch(dialogActions.updateComponentProps(this, injectComponentProps))
   }
 }
 
@@ -211,12 +226,24 @@ export function DialogProvider(
     Dialog.dialogDispatch = dispatch
   }, [dispatch, ModalComponent, modalControllerAdapter])
 
+  useEffect(() => {
+    Dialog.store = store
+  }, [store])
+
   return (
     <DialogAppContext.Provider value={store}>
       {children}
       {store.dialogs.map((dialog) => {
         const { ComponentWithDialogContext, id } = dialog
-        return <ComponentWithDialogContext key={id}></ComponentWithDialogContext>
+        const injectComponentProps = store.injectComponentPropsMap[id]
+        console.log(111, store.injectComponentPropsMap)
+
+        return (
+          <ComponentWithDialogContext
+            key={id}
+            injectComponentProps={injectComponentProps}
+          ></ComponentWithDialogContext>
+        )
       })}
     </DialogAppContext.Provider>
   )

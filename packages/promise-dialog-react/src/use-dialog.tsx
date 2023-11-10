@@ -2,6 +2,7 @@ import { useContext } from 'react'
 
 import { Dialog, DialogContext } from './Dialog'
 import { ComponentProps, DialogFC, ModalProps } from './types'
+import { last } from 'lodash-es'
 
 export function useDialog() {
   // 调用useDialog所关联的Dialog
@@ -29,6 +30,12 @@ export function useDialog() {
     // TODO:
   }
 
+  function updateComponentProps(...args: Parameters<Dialog['updateComponentProps']>) {
+    const currentDialogIndex = Dialog.store.dialogs.indexOf(currentDialog!)
+    const nextDialog = Dialog.store.dialogs[currentDialogIndex + 1]
+    nextDialog?.updateComponentProps(...args)
+  }
+
   // 获取当前dialog，如果操作其它dialog，可配合Dialog.dialogs使用
   function getCurrentDialog() {
     return currentDialog
@@ -40,6 +47,7 @@ export function useDialog() {
     confirm,
     onCancel,
     cancel,
+    updateComponentProps,
     confirmDialog,
     getCurrentDialog
   }
