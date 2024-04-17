@@ -27,6 +27,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ahooks": "^3.7.11",
     "lodash-es": "^4.17.21"
   }
 }
